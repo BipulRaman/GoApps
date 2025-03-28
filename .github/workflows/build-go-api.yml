@@ -31,14 +31,11 @@ jobs:
     - name: Install dependencies and build
       run: |
         go mod tidy
-        GOOS=windows GOARCH=amd64 go build -o bin/app.exe ./cmd
-
-    - name: Archive the built application
-      run: tar -czf gin-api.tar.gz bin/
+        go build -o build/app.exe ./cmd
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
       with:
         app-name: gobipul
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ github.workspace }}/go-gin-api/gin-api.tar.gz
+        package: ${{ github.workspace }}/go-gin-api/build/
