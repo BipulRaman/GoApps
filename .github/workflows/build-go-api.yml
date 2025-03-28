@@ -1,7 +1,4 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
-name: Go
+name: Build and Deploy Go API
 
 on:
   push:
@@ -15,34 +12,31 @@ on:
   workflow_dispatch:
 
 jobs:
-
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.20'
 
-    - name: Install dependencies
+    - name: Install dependencies and build
       working-directory: ./go-gin-api
       run: |
         go mod tidy
+        go build -o gin-api
 
-    - name: Build Go application
+    - name: Archive the built application
       working-directory: ./go-gin-api
-      run: |
-        go build -o ./go-gin-api/gin-api
-
-    - name: Archive the built Go application
-      run: |
-        tar -czf gin-api.tar.gz gin-api
+      run: tar -czf gin-api.tar.gz gin-api
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
       with:
         app-name: gobipul
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: gin-api.tar.gz
+        package: ./go-gin-api/gin-api.tar.gz
