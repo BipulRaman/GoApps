@@ -31,9 +31,10 @@ jobs:
       run: |
         go mod tidy
 
-    - name: Archive the built Go application
+    - name: Build Go application
+      working-directory: ./go-gin-api
       run: |
-        tar -czf gin-api.tar.gz ./go-gin-api/gin-api
+        go build -o ./go-gin-api/gin-api
 
     - name: Archive the built Go application
       run: |
