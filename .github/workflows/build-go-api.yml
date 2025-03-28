@@ -28,7 +28,7 @@ jobs:
 
     - name: Build for Windows
       run: |
-        GOOS=windows GOARCH=amd64 go build -v -o go-gin-api.exe ./...
+        GOOS=windows GOARCH=amd64 go build -v -o go-gin-api/go-gin-api.exe ./main.go
       working-directory: go-gin-api
 
     - name: Deploy to Azure Web App
