@@ -27,9 +27,9 @@ jobs:
     - name: Install dependencies and build
       working-directory: ./go-gin-api
       run: |
-      ls -la
-      go mod tidy
-      go build -o gin-api
+        ls -la
+        go mod tidy
+        go build -o gin-api
 
     - name: Archive the built application
       working-directory: ./go-gin-api
