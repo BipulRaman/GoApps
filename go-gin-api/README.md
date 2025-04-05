@@ -58,7 +58,7 @@ go-gin-api
 
 2. **Run the Docker container with a custom name:**
    ```bash
-   docker run --name container_name go-gin-api
+   docker run --name container_name -p 8080:8080 go-gin-api
    ```
    ```
 
