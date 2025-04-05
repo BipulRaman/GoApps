@@ -8,6 +8,7 @@ func main() {
 	// Initialize the router
 	r := routes.SetupRouter()
 
-	// Start the server on port 8080
-	r.Run(":8081")
+	// Start the server
+	//r.Run(":8080")
+	r.Run()
 }
