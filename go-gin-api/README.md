@@ -18,40 +18,63 @@ go-gin-api
 │   └── services              # Contains business logic
 │       └── example_service.go
 ├── go.mod                    # Module definition and dependencies
+├── Dockerfile                # Docker configuration
+├── .dockerignore             # Files to ignore during Docker build
 └── README.md                 # Project documentation
 ```
 
 ## Setup Instructions
 
+### Run Locally
+
 1. **Clone the repository:**
-   ```
+   ```bash
    git clone <repository-url>
    cd go-gin-api
    ```
 
 2. **Install dependencies:**
    Ensure you have Go installed, then run:
-   ```
+   ```bash
    go mod tidy
    ```
 
 3. **Run the application:**
-   ```
+   ```bash
    go run cmd/main.go
    ```
 
 4. **Access the API:**
-   Open your browser or use a tool like Postman to access the API at `http://localhost:8080`.
+   Open your browser or use a tool like Postman to access the API at `http://localhost:8081`.
+
+---
+
+### Run with Docker
+
+1. **Build the Docker image:**
+   ```bash
+   docker build -t go-gin-api .
+   ```
+
+2. **Run the Docker container:**
+   ```bash
+   docker run -p 8081:8081 go-gin-api
+   ```
+
+3. **Access the API:**
+   Open your browser or use a tool like Postman to access the API at `http://localhost:8081`.
+
+---
 
 ## Usage Examples
 
 - **Get Example:**
-  ```
+  ```bash
   GET /example
   ```
 
 - **Create Example:**
-  ```
+  ```bash
   POST /example
   Content-Type: application/json
 
