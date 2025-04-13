@@ -61,6 +61,42 @@ This guide will help you set up your environment for Go and the GoGIN framework,
 
 ---
 
+### Setting Up Visual Studio Code for Debugging
+
+1. **Install the Go Extension**
+   - Open Visual Studio Code.
+   - Go to the Extensions view (`Ctrl+Shift+X`).
+   - Search for "Go" and install the extension by the Go team.
+
+2. **Create a Debug Configuration**
+   - Open the Command Palette (`Ctrl+Shift+P`) and select `Debug: Open launch.json`.
+   - If prompted, select "Go" as the environment.
+   - Add the following configuration to the `launch.json` file:
+
+     ```json
+     {
+       "version": "0.2.0",
+       "configurations": [
+         {
+           "name": "Launch Go App",
+           "type": "go",
+           "request": "launch",
+           "mode": "debug",
+           "program": "${workspaceFolder}/go-gin-api/cmd/main.go",
+           "env": {},
+           "args": []
+         }
+       ]
+     }
+     ```
+
+3. **Start Debugging**
+   - Open the `main.go` file in the `cmd` folder.
+   - Press `F5` to start debugging.
+   - Use breakpoints to inspect the application’s behavior during runtime.
+
+---
+
 ### Building and Running Go Applications
 
 1. **Navigate to Your Project**
